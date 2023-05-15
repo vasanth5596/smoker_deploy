@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>smoker prediction</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body >
+ <div class="login"  >
+	<h1>Smoker Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+      <div class="row">
+        <level>Age</level>
+      </div>
+    	<input type="text" name="age" placeholder="Age" required="required"  style="margin-bottom:10px;"/>
+      <div class="row">
+        <level>Gender</level>
+      </div>
+    	<input type="text" name="sex" placeholder="male-1,female-0" required="required" style="margin-bottom:10px;"/>
+      <div class="row">
+        <level >BMI</level>
+      </div>
+    	<input type="text" name="bmi" placeholder="Bmi" required="required" style="margin-bottom:10px;"/>
+      <div class="row">
+        <level >Children</level>
+      </div>
+      <input type="text" name="children" placeholder="Children" required="required" style="margin-bottom:10px;"/>
+      <div class="row">
+        <level>Charges</level>
+      </div>
+      <input type="text" name="charges" placeholder="Charges" required="required" style="margin-bottom:10px;"/>
+      <div>
+        <button type="submit" class="btn btn-primary btn-block btn-large style="margin-top:10px;"">Predict</button>
+      </div>      
+  </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
