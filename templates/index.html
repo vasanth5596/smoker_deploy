@@ -1,53 +1,110 @@
 <!DOCTYPE html>
-<html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<html>
+
 <head>
   <meta charset="UTF-8">
-  <title>smoker prediction</title>
+  <title>Smoker Prediction</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: 'Arimo', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .login {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 4px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .login h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .login input[type="text"] {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-family: 'Hind', sans-serif;
+    }
+
+    .login button[type="submit"] {
+      width: 100%;
+      padding: 15px;
+      background-color: #4CAF50;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      font-family: 'Open Sans Condensed', sans-serif;
+      cursor: pointer;
+    }
+
+    .login button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .prediction {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
-<body >
- <div class="login"  >
-	<h1>Smoker Prediction</h1>
+<body>
+  <div class="container">
+    <div class="login">
+      <h1>Smoker Prediction</h1>
+      <form action="{{ url_for('predict')}}" method="post">
+        <div class="row">
+          <label>Age</label>
+        </div>
+        <input type="text" name="age" placeholder="Age" required="required" />
+        <div class="row">
+          <label>Gender</label>
+        </div>
+        <input type="text" name="sex" placeholder="Male-1, Female-0" required="required" />
+        <div class="row">
+          <label>BMI</label>
+        </div>
+        <input type="text" name="bmi" placeholder="BMI" required="required" />
+        <div class="row">
+          <label>Children</label>
+        </div>
+        <input type="text" name="children" placeholder="Children" required="required" />
+        <div class="row">
+          <label>Charges</label>
+        </div>
+        <input type="text" name="charges" placeholder="Charges" required="required" />
+        <div>
+          <button
+          type="submit" class="btn btn-primary btn-block btn-large" style="margin-top:10px;">Predict</button>
+        </div>
+      </form>
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-      <div class="row">
-        <level>Age</level>
+      <div class="prediction">
+        {{ prediction_text }}
       </div>
-    	<input type="text" name="age" placeholder="Age" required="required"  style="margin-bottom:10px;"/>
-      <div class="row">
-        <level>Gender</level>
-      </div>
-    	<input type="text" name="sex" placeholder="male-1,female-0" required="required" style="margin-bottom:10px;"/>
-      <div class="row">
-        <level >BMI</level>
-      </div>
-    	<input type="text" name="bmi" placeholder="Bmi" required="required" style="margin-bottom:10px;"/>
-      <div class="row">
-        <level >Children</level>
-      </div>
-      <input type="text" name="children" placeholder="Children" required="required" style="margin-bottom:10px;"/>
-      <div class="row">
-        <level>Charges</level>
-      </div>
-      <input type="text" name="charges" placeholder="Charges" required="required" style="margin-bottom:10px;"/>
-      <div>
-        <button type="submit" class="btn btn-primary btn-block btn-large style="margin-top:10px;"">Predict</button>
-      </div>      
-  </form>
-
-   <br>
-   <br>
-   {{ prediction_text }}
-
- </div>
-
-
+    </div>
+  </div>
 </body>
+
 </html>
